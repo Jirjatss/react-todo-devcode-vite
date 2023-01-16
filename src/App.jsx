@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './assets/Tailwind.css'
-import Dashboard from './routes/Dashboard';
+import Home from './routes/Home';
 import ItemList from './routes/ItemList';
 import Root from './routes/Root';
 
@@ -10,7 +10,7 @@ function App() {
       path: "/",
       element: <Root />,
       children: [
-        { index: true, element: <Dashboard /> },
+        { index: true, element: <Home /> },
         {
           path: "detail/:id",
           element: <ItemList />

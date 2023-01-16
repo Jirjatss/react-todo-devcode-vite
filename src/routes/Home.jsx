@@ -6,7 +6,7 @@ import ActivityList from '../components/ActivityList';
 import ModalDelete from '../components/ModalDelete';
 import ModalDone from '../components/ModalDone';
 
-function Dashboard() {
+function Home() {
 
     const [activity, setActivity] = useState([])
     const [click, setClick] = useState(false)
@@ -15,7 +15,7 @@ function Dashboard() {
 
     const getActivities = async () => {
         await axios.get(
-            `https://todo.api.devcode.gethired.id/activity-groups?email=alfian.aswinda%40gmail.com`
+            `https://todo.api.devcode.gethired.id/activity-groups?email=sajadhijir@gmail.com`
         ).then(response => {
             setActivity(response.data.data)
         }).catch(err => console.alert(err.message))
@@ -24,17 +24,13 @@ function Dashboard() {
     const addActivity = async () => {
         const request = {
             title: "New Activity",
-            email: "alfian.aswinda@gmail.com",
+            email: "sajadhijir@gmail.com",
         }
         const headers = {
             "Content-Type": "application/json",
         }
         await axios.post("https://todo.api.devcode.gethired.id/activity-groups", request, headers)
 
-        // delete all activity
-        // activity.map(async (act) => await axios.delete(
-        //     `https://todo.api.devcode.gethired.id/activity-groups/${act.id}`
-        // ))
         setClick(!click)
     }
 
@@ -53,6 +49,7 @@ function Dashboard() {
 
     return (
         <>
+        <div className='px-24'>
             <TitleBar addActivity={addActivity} />
             {activity.length == 0 ?
                 <div className='min-h-[70vh] lg:min-h-[60vh] flex items-center' onClick={addActivity}>
@@ -67,8 +64,9 @@ function Dashboard() {
             }
             <ModalDelete data={data} deleteActivity={deleteActivity} />
             <ModalDone done={done} setDone={setDone} />
+            </div>
         </>
     )
 }
 
-export default Dashboard
+export default Home

@@ -146,17 +146,13 @@ function ItemList() {
         return items;
     }, [sortValue, item]);
 
-    // useEffect(() => {
-    //     sortedTodo()
-    // }, [sortValue])
-
     useEffect(() => {
         getItemsList()
     }, [])
 
 
     return (
-        <>
+        <div className='px-24'>
             <TitleBar item={item} afterChange={getItemsList} setSortValue={setSortValue} sortValue={sortValue} />
             {item?.todo_items?.length === 0 ?
                 <label className='min-h-[70vh] lg:min-h-[60vh] flex items-center cursor-pointer' htmlFor="my-modal-2">
@@ -179,7 +175,7 @@ function ItemList() {
             <ModalAdd priorityOption={priorityOption} data={data} setData={setData} createTodo={createTodo} editTodo={editTodo} />
             <ModalDelete data={data} deleteActivity={deleteTodo} />
             <ModalDone done={done} setDone={setDone} />
-        </>
+        </div>
     )
 }
 
